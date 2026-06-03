@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Language" content="en" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Lyxcode Studios universal website order form for business websites, landing pages, demo websites, payment rules, order rules, AI support and mobile app requirements."
+  />
+  <title>Lyxcode Studios — Universal Website Order Form</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap"
+    />
+  </noscript>
+  <style>
+    :root {
+      --header-h: 68px;
+      --background: #f6f5f0;
+      --foreground: #101010;
+      --muted: #6f6b63;
+      --soft: #eeece4;
+      --card: #fbfaf6;
+      --border: #d8d4c8;
+      --border-strong: #b9b2a4;
+      --success: #1b7f45;
+      --danger: #a51d1d;
+      --radius: 18px;
+      --font-mono: "JetBrains Mono", "SFMono-Regular", "Cascadia Mono", "Consolas", "Liberation Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--foreground);
+      background:
+        radial-gradient(circle at top left, rgba(16, 16, 16, 0.08), transparent 30rem),
+        linear-gradient(135deg, rgba(16, 16, 16, 0.03) 25%, transparent 25%) 0 0 / 24px 24px,
+        var(--background);
+      font-family: var(--font-mono);
+      letter-spacing: -0.03em;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(16, 16, 16, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 16, 16, 0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    section[id] {
+      scroll-margin-top: calc(var(--header-h) + 16px);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      min-height: var(--header-h);
+      border-bottom: 1px solid var(--border);
+      background: rgba(246, 245, 240, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .header-inner {
+      width: min(1160px, calc(100% - 32px));
+      min-height: var(--header-h);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--foreground);
+      color: var(--background);
+      font-weight: 800;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.14);
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .desktop-nav a:hover {
+      color: var(--foreground);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      padding: 3px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--card);
+    }
+
+    .lang-toggle button {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 7px 10px;
+      cursor: pointer;
+      transition:
+        transform .18s ease,
+        background-color .18s ease,
+        color .18s ease;
+    }
+
+    .lang-toggle button.active {
+      background: var(--foreground);
+      color: var(--background);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 16px;
+      border: 1px solid var(--foreground);
+      border-radius: 12px;
+      background: var(--foreground);
+      color: var(--background);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        background-color .18s ease,
+        color .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: .62;
+      transform: none;
+    }
+
+    .btn:active,
+    .lang-toggle button:active,
+    .steps a:active,
+    .mobile-menu-btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn.outline {
+      background: var(--card);
+      color: var(--foreground);
+      border-color: var(--border-strong);
+    }
+
+    .btn.full {
+      width: 100%;
+    }
+
+    .btn:focus-visible,
+    .lang-toggle button:focus-visible,
+    .steps a:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--foreground);
+      outline-offset: 3px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+      cursor: pointer;
+      transition: transform .18s ease, background-color .18s ease;
+    }
+
+    .mobile-panel {
+      display: none;
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto 12px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+    }
+
+    .mobile-panel.open {
+      display: block;
+    }
+
+    .mobile-panel a {
+      display: block;
+      padding: 12px;
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .mobile-panel a:hover {
+      background: var(--soft);
+      color: var(--foreground);
+    }
+
+    .wrap {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 70px 0 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(251, 250, 246, .82);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .label::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--success);
+      box-shadow: 0 0 0 4px rgba(27, 127, 69, .12);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: -0.07em;
+      line-height: .98;
+    }
+
+    h1 {
+      margin-top: 22px;
+      max-width: 780px;
+      font-size: clamp(44px, 8vw, 86px);
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 50px);
+    }
+
+    h3 {
+      font-size: 20px;
+      letter-spacing: -0.05em;
+      line-height: 1.15;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .hero-copy {
+      margin-top: 24px;
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .terminal-card {
+      border: 1px solid var(--foreground);
+      border-radius: 22px;
+      background: #151515;
+      color: #f9f7ef;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(16,16,16,.18);
+    }
+
+    .terminal-top {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.58);
+      font-size: 12px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 99px;
+      background: rgba(255,255,255,.35);
+    }
+
+    .terminal-body {
+      padding: 22px;
+    }
+
+    .code-line {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(255,255,255,.10);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .code-line:last-child {
+      border-bottom: 0;
+    }
+
+    .code-key {
+      min-width: 120px;
+      color: rgba(255,255,255,.48);
+    }
+
+    .code-value {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 26px;
+      align-items: start;
+      padding: 26px 0 80px;
+    }
+
+    .steps-shell {
+      position: sticky;
+      top: calc(var(--header-h) + 18px);
+    }
+
+    .steps {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(251,250,246,.82);
+    }
+
+    .steps-title {
+      padding: 8px 10px 14px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .progress-box {
+      margin: 0 0 12px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(255, 254, 249, .76);
+    }
+
+    .progress-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .progress-track {
+      height: 8px;
+      margin-top: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--soft);
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--foreground);
+      transition: width .22s ease;
+    }
+
+    .steps a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 40px;
+      padding: 9px 10px;
+      border: 1px solid transparent;
+      border-radius: 13px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        background-color .18s ease,
+        color .18s ease;
+    }
+
+    .steps a.active {
+      background: var(--foreground);
+      color: var(--background);
+      border-color: var(--foreground);
+    }
+
+    .step-num {
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 8px;
+      border: 1px solid currentColor;
+      font-size: 11px;
+    }
+
+    .form-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .section-card {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(251,250,246,.9);
+      overflow: hidden;
+    }
+
+    .section-head {
+      padding: 24px 24px 18px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(238,236,228,.46);
+    }
+
+    .section-kicker {
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .section-desc {
+      margin-top: 12px;
+      max-width: 820px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      letter-spacing: -0.035em;
+    }
+
+    .section-body {
+      padding: 24px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label.field-label,
+    .group-title {
+      color: var(--foreground);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      min-width: 0;
+    }
+
+    legend {
+      margin-bottom: 10px;
+      padding: 0;
+      color: var(--foreground);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      background: #fffef9;
+      color: var(--foreground);
+      padding: 13px 14px;
+      font-size: 14px;
+      letter-spacing: -0.035em;
+      transition:
+        border-color .18s ease,
+        background-color .18s ease,
+        box-shadow .18s ease;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 112px;
+      line-height: 1.6;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--foreground);
+      box-shadow: 0 0 0 4px rgba(16,16,16,.08);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .choice {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: start;
+      gap: 12px;
+      min-height: 72px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #fffef9;
+      cursor: pointer;
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        background-color .18s ease;
+    }
+
+    .choice:hover {
+      transform: translateY(-1px);
+      border-color: var(--foreground);
+      background: #fff;
+    }
+
+    .choice input {
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0;
+      padding: 0;
+      accent-color: var(--foreground);
+    }
+
+    .choice strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.35;
+      letter-spacing: -0.045em;
+    }
+
+    .choice small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+      letter-spacing: -0.03em;
+    }
+
+    .review-box {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+      border: 1px dashed var(--border-strong);
+      border-radius: 18px;
+      background: var(--soft);
+    }
+
+    .submit-panel {
+      display: grid;
+      gap: 14px;
+      padding: 24px;
+      border: 1px solid var(--foreground);
+      border-radius: 22px;
+      background: var(--foreground);
+      color: var(--background);
+    }
+
+    .submit-panel p {
+      color: rgba(255,255,255,.72);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .submit-panel .btn {
+      background: var(--background);
+      color: var(--foreground);
+      border-color: var(--background);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      z-index: 100;
+      max-width: min(560px, calc(100% - 32px));
+      transform: translate(-50%, 24px);
+      opacity: 0;
+      pointer-events: none;
+      padding: 13px 16px;
+      border: 1px solid var(--foreground);
+      border-radius: 14px;
+      background: var(--foreground);
+      color: var(--background);
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 18px 40px rgba(0,0,0,.22);
+      transition:
+        transform .22s ease,
+        opacity .22s ease;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 920px) {
+      .desktop-nav,
+      .header-actions .btn {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .hero-grid,
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .main-grid {
+        padding-top: 12px;
+      }
+
+      .steps-shell {
+        position: sticky;
+        top: var(--header-h);
+        z-index: 45;
+        margin-inline: -16px;
+        padding: 8px 16px;
+        background: rgba(246, 245, 240, 0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .steps {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 8px;
+        border-radius: 16px;
+        scrollbar-width: thin;
+      }
+
+      .steps-title,
+      .progress-box {
+        display: none;
+      }
+
+      .steps a {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .wrap,
+      .header-inner,
+      .footer-inner,
+      .mobile-panel {
+        width: min(1120px, calc(100% - 24px));
+      }
+
+      .hero-actions,
+      .field-grid,
+      .choice-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field-grid,
+      .choice-grid {
+        display: grid;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .section-head,
+      .section-body,
+      .terminal-body,
+      .submit-panel {
+        padding: 18px;
+      }
+
+      .code-line {
+        display: grid;
+        gap: 4px;
+      }
+
+      .code-key {
+        min-width: 0;
+      }
+
+      h1 {
+        font-size: clamp(38px, 13vw, 58px);
+      }
+    }
+
+    @media print {
+      .progress-box {
+        display: none !important;
+      }
+
+      body {
+        background: #fff;
+        color: #000;
+      }
+
+      body::before,
+      .site-header,
+      .hero,
+      .steps-shell,
+      .footer,
+      .toast,
+      .terminal-card {
+        display: none !important;
+      }
+
+      .wrap,
+      .footer-inner {
+        width: 100%;
+      }
+
+      .main-grid {
+        display: block;
+        padding: 0;
+      }
+
+      .section-card,
+      .submit-panel {
+        break-inside: avoid;
+        border: 1px solid #999;
+        border-radius: 0;
+        background: #fff;
+        color: #000;
+        margin-bottom: 12px;
+      }
+
+      .section-head,
+      .section-body {
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Lyxcode Studios">
+        <span class="brand-mark" aria-hidden="true">L</span>
+        <span>Lyxcode Studios</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary">
+        <a href="#purpose" data-i18n="navPurpose">Purpose</a>
+        <a href="#features" data-i18n="navFeatures">Features</a>
+        <a href="#content" data-i18n="navContent">Content</a>
+        <a href="#rules" data-i18n="navRules">Rules</a>
+        <a href="#confirm" data-i18n="navConfirm">Confirm</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-toggle" aria-label="Language switcher">
+          <button type="button" id="btnEn" class="active" data-lang="en">EN</button>
+          <button type="button" id="btnZh" data-lang="zh">中文</button>
+        </div>
+        <a class="btn" id="headerWhatsapp" href="https://wa.me/60122847784" data-i18n="headerCta">Start Order</a>
+        <button class="mobile-menu-btn" type="button" id="mobileMenuBtn" aria-controls="mobilePanel" aria-expanded="false">☰</button>
+      </div>
+    </div>
+
+    <div class="mobile-panel" id="mobilePanel">
+      <a href="#purpose" data-i18n="navPurpose">Purpose</a>
+      <a href="#features" data-i18n="navFeatures">Features</a>
+      <a href="#content" data-i18n="navContent">Content</a>
+      <a href="#rules" data-i18n="navRules">Rules</a>
+      <a href="#confirm" data-i18n="navConfirm">Confirm</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap" aria-labelledby="heroTitle">
+      <div class="hero-grid">
+        <div>
+          <span class="label" data-i18n="heroLabel">Universal website order form</span>
+          <h1 id="heroTitle" data-i18n="heroTitle">Website brief, without messy back-and-forth.</h1>
+          <p class="hero-copy" data-i18n="heroCopy">
+            Fill in the business details once. The form converts your answers into a clear WhatsApp project brief for Lyxcode Studios.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="#purpose" data-i18n="heroPrimary">Start the form</a>
+            <a class="btn outline" href="#confirm" data-i18n="heroSecondary">Final confirmation</a>
+          </div>
+          <p class="hero-note" id="contactLine">WhatsApp: +60 12-284 7784 · Email: walkertey@proton.me</p>
+        </div>
+
+        <div class="terminal-card" aria-label="Order form summary">
+          <div class="terminal-top">
+            <span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span>
+            <span style="margin-left:8px;">order-form.config</span>
+          </div>
+          <div class="terminal-body">
+            <div class="code-line">
+              <span class="code-key">purpose</span>
+              <span class="code-value" data-i18n="termPurpose">website / landing / demo / system</span>
+            </div>
+            <div class="code-line">
+              <span class="code-key">features</span>
+              <span class="code-value" data-i18n="termFeatures">WhatsApp, content, media, payment rules</span>
+            </div>
+            <div class="code-line">
+              <span class="code-key">apps</span>
+              <span class="code-value" data-i18n="termApps">APK / Apple app requirement check</span>
+            </div>
+            <div class="code-line">
+              <span class="code-key">submit_to</span>
+              <span class="code-value">+60 12-284 7784</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap main-grid">
+      <aside class="steps-shell" aria-label="Order form steps">
+        <div class="progress-box" aria-live="polite">
+          <div class="progress-row">
+            <span data-i18n="progressLabel">Progress</span>
+            <span id="progressText">0 / 9</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+        </div>
+        <nav class="steps" id="stepsNav">
+          <div class="steps-title" data-i18n="stepsTitle">Steps</div>
+          <a href="#purpose"><span class="step-num">01</span><span data-i18n="stepPurpose">Purpose</span></a>
+          <a href="#business"><span class="step-num">02</span><span data-i18n="stepBusiness">Business</span></a>
+          <a href="#version"><span class="step-num">03</span><span data-i18n="stepVersion">Version</span></a>
+          <a href="#features"><span class="step-num">04</span><span data-i18n="stepFeatures">Features</span></a>
+          <a href="#content"><span class="step-num">05</span><span data-i18n="stepContent">Content</span></a>
+          <a href="#media"><span class="step-num">06</span><span data-i18n="stepMedia">Photos</span></a>
+          <a href="#rules"><span class="step-num">07</span><span data-i18n="stepRules">Rules</span></a>
+          <a href="#aiapp"><span class="step-num">08</span><span data-i18n="stepAiApp">AI / App</span></a>
+          <a href="#confirm"><span class="step-num">09</span><span data-i18n="stepConfirm">Confirm</span></a>
+        </nav>
+      </aside>
+
+      <form class="form-stack" id="projectForm">
+        <section class="section-card" id="purpose">
+          <div class="section-head">
+            <div class="section-kicker" data-i18n="kicker01">01 / Website purpose</div>
+            <h2 data-i18n="purposeTitle">What do you want the website to do?</h2>
+            <p class="section-desc" data-i18n="purposeDesc">Choose the main business goal. This prevents the project from becoming too wide or too expensive.</p>
+          </div>
+          <div class="section-body">
+            <fieldset>
+              <legend data-i18n="purposeLegend">Website purpose</legend>
+              <div class="choice-grid" id="purposeChoices"></div>
+            </fieldset>
+          </div>
+        </section>
+
+        <section class="section-card" id="business">
+          <div class="section-head">
+            <div class="section-kicker" data-i18n="kicker02">02 / Business information</div>
+            <h2 data-i18n="businessTitle">Business type and contact details.</h2>
+            <p class="section-desc" data-i18n="businessDesc">Fill only what is ready. Missing details can be confirmed later.</p>
+          </div>
+          <div class="section-body">
+            <div class="field-grid">
+              <div class="field">
+                <label class="field-label" for="clientName" data-i18n="clientName">Your name</label>
+                <input id="clientName" name="clientName" type="text" autocomplete="name" maxlength="150" required />
+              </div>
+              <div class="field">
+                <label class="field-label" for="businessName" data-i18n="businessName">Business name</label>
+                <input id="businessName" name="businessName" type="text" autocomplete="organization" maxlength="150" required />
+              </div>
+              <div class="field">
+                <label class="field-label" for="phone" data-i18n="phone">Phone / WhatsApp</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" pattern="[+\d\s\-()]{7,20}" maxlength="30" title="+60 12-345 6789" required />
+              </div>
+              <div class="field">
+                <label class="field-label" for="email" data-i18n="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" maxlength="150" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="businessType" data-i18n="businessType">Business type</label>
+                <select id="businessType" name="businessType" required></select>
+              </div>
+              <div class="field">
+                <label class="field-label" for="targetCustomer" data-i18n="targetCustomer">Target customer</label>
+                <input id="targetCustomer" name="targetCustomer" type="text" maxlength="150" />
+              </div>
+              <div class="field full">
+                <label class="field-label" for="businessSummary" data-i18n="businessSummary">Short business introduction</label>
+                <textarea id="businessSummary" name="businessSummary" maxlength="500"></textarea>
+                <p class="hint" data-i18n="businessSummaryHint">Example: what you sell, where you operate, and what customers should know first.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="version">
+          <div class="section-head">
+            <div class="section-kicker" data-i18n="kicker03">03 / Version choice</div>
+            <h2 data-i18n="versionTitle">Choose the project version.</h2>
+            <p class="section-desc" data-i18n="versionDesc">Pick the closest version. Final price still depends on scope and content readiness.</p>
+          </div>
+          <div class="section-body">
+            <fieldset>
+              <legend data-i18n="versionLegend">Project version</legend>
+              <div class="choice-grid" id="versionChoices"></div>
+            </fieldset>
+          </div>
+        </section>
+
+        <section class="section-card" id="features">
+          <div class="section-head">
+            <div class="section-kicker" data-i18n="kicker04">04 / Feature checklist</div>
+            <h2 data-i18n="featuresTitle">Which functions are required?</h2>
+            <p class="section-desc" data-i18n="featuresDesc">Select only what you actually need. Extra features increase cost and delivery time.</p>
+          </div>
+          <div class="section-body">
+            <fieldset>
+              <legend data-i18n="featuresLegend">Required features</legend>
+              <div class="choice-grid" id="featureChoices"></div>
+            </fieldset>
+          </div>
+        </section>
+
+        <section class="section-card" id="content">
+          <div class="section-head">
+            <div class="section-kicker" data-i18n="kicker05">05 / Content and copywriting</div>
+            <h2 data-i18n="contentTitle">Write the content you already have.</h2>
+            <p class="section-desc" data-i18n="contentDesc">Short notes are enough. Do not paste very long documents here.</p>
+          </div>
+          <div class="section-body">
+            <div class="field-grid">
+              <div class="field full">
+                <label class="field-label" for="servicesText" data-i18n="servicesText">Services / products to show</label>
+                <textarea id="servicesText" name="servicesText" maxlength="800"></textarea>
+              </div>
+              <div class="field full">
+                <label class="field-label" for="pricingText" data-i18n="pricingText">Prices / packages / menu information</label>
+                <textarea id="pricingText" name="pricingText" maxlength="800"></textarea>
+              </div>
+              <div class="field full">
+                <label class="field-label" for="brandStyle" data-i18n="brandStyle">Preferred style, colors, or reference websites</label>
+                <textarea id="brandStyle" name="brandStyle" maxlength="500"></textarea>
+              </div>
+              <div class="field full">
+                <label class="field-label" for="specialNotes" data-i18n="specialNotes">Special notes</label>
+                <textarea id="specialNotes" name="specialNotes" maxlength="800"></textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="media">
+          <div class="section-head">
+            <div class="section-kicker" data-i18n="kicker06">06 / Photo material check</div>
+            <h2 data-i18n="mediaTitle">What photos and brand assets are ready?</h2>
+            <p class="section-desc" data-i18n="mediaDesc">Good real photos make the website look more trustworthy than generated filler.</p>
+          </div>
+          <div class="section-body">
+            <fieldset>
+              <legend data-i18n="mediaLegend">Available materials</legend>
+              <div class="choice-grid" id="mediaChoices"></div>
+            </fieldset>
+            <div class="field" style="margin-top:16px;">
+              <label class="field-label" for="mediaNotes" data-i18n="mediaNotes">Photo / logo notes</label>
+              <textarea id="mediaNotes" name="mediaNotes" maxlength="500"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="rules">
+          <div class="section-head">
+            <div class="section-kicker" data-i18n="kicker07">07 / Payment, delivery and order rules</div>
+            <h2 data-i18n="rulesTitle">Business rules that cannot be guessed.</h2>
+            <p class="section-desc" data-i18n="rulesDesc">If your site involves payment, delivery, booking or orders, these rules must be clear before development.</p>
+          </div>
+          <div class="section-body">
+            <div class="field-grid">
+              <div class="field">
+                <label class="field-label" for="paymentMethod" data-i18n="paymentMethod">Payment method</label>
+                <select id="paymentMethod" name="paymentMethod"></select>
+              </div>
+              <div class="field">
+                <label class="field-label" for="deliveryType" data-i18n="deliveryType">Delivery / pickup type</label>
+                <select id="deliveryType" name="deliveryType"></select>
+              </div>
+              <div class="field full">
+                <label class="field-label" for="ruleDetails" data-i18n="ruleDetails">Order, payment, refund, delivery or booking rules</label>
+                <textarea id="ruleDetails" name="ruleDetails" maxlength="800"></textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="aiapp">
+          <div class="section-head">
+            <div class="section-kicker" data-i18n="kicker08">08 / AI customer service and app needs</div>
+            <h2 data-i18n="aiAppTitle">Do you need AI support or a mobile app?</h2>
+            <p class="section-desc" data-i18n="aiAppDesc">This does not force an app build. It only records whether APK or Apple app planning is needed.</p>
+          </div>
+          <div class="section-body">
+            <fieldset>
+              <legend data-i18n="aiLegend">AI customer service requirement</legend>
+              <div class="choice-grid" id="aiChoices"></div>
+            </fieldset>
+            <div style="height:16px;"></div>
+            <fieldset>
+              <legend data-i18n="appLegend">Mobile app requirement</legend>
+              <div class="choice-grid" id="appChoices"></div>
+            </fieldset>
+            <div class="field" style="margin-top:16px;">
+              <label class="field-label" for="aiAppNotes" data-i18n="aiAppNotes">AI / app notes</label>
+              <textarea id="aiAppNotes" name="aiAppNotes" maxlength="500"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="confirm">
+          <div class="section-head">
+            <div class="section-kicker" data-i18n="kicker09">09 / Final confirmation</div>
+            <h2 data-i18n="confirmTitle">Confirm before sending to WhatsApp.</h2>
+            <p class="section-desc" data-i18n="confirmDesc">The form will create a structured project brief and open WhatsApp in the same window.</p>
+          </div>
+          <div class="section-body">
+            <div class="review-box">
+              <fieldset>
+                <legend data-i18n="confirmLegend">Final confirmation</legend>
+                <div class="choice-grid" id="confirmChoices"></div>
+              </fieldset>
+            </div>
+          </div>
+        </section>
+
+        <div class="submit-panel">
+          <h3 data-i18n="submitTitle">Send project brief to Lyxcode Studios</h3>
+          <p id="submitHelp">This will open WhatsApp to +60 12-284 7784. Please review the message before sending.</p>
+          <button class="btn full" type="submit" id="submitBtn">Open WhatsApp → +60 12-284 7784</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2026 Lyxcode Studios</span>
+      <span id="footerContact">WhatsApp: +60 12-284 7784 · walkertey@proton.me</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const WHATSAPP_NUMBER = "60122847784";
+    const WHATSAPP_DISPLAY = "+60 12-284 7784";
+    const CONTACT_EMAIL = "walkertey@proton.me";
+    const STORAGE_KEY = "lyxcode_order_form_session_v2";
+
+    let lang = "en";
+    let toastTimer = null;
+    let isSubmitting = false;
+
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+
+    const i18n = {
+      en: {
+        navPurpose: "Purpose",
+        navFeatures: "Features",
+        navContent: "Content",
+        navRules: "Rules",
+        navConfirm: "Confirm",
+        headerCta: "Start Order",
+        heroLabel: "Universal website order form",
+        heroTitle: "Website brief, without messy back-and-forth.",
+        heroCopy: "Fill in the business details once. The form converts your answers into a clear WhatsApp project brief for Lyxcode Studios.",
+        heroPrimary: "Start the form",
+        heroSecondary: "Final confirmation",
+        termPurpose: "website / landing / demo / system",
+        termFeatures: "WhatsApp, content, media, payment rules",
+        termApps: "APK / Apple app requirement check",
+        progressLabel: "Progress",
+        stepsTitle: "Steps",
+        stepPurpose: "Purpose",
+        stepBusiness: "Business",
+        stepVersion: "Version",
+        stepFeatures: "Features",
+        stepContent: "Content",
+        stepMedia: "Photos",
+        stepRules: "Rules",
+        stepAiApp: "AI / App",
+        stepConfirm: "Confirm",
+        kicker01: "01 / Website purpose",
+        purposeTitle: "What do you want the website to do?",
+        purposeDesc: "Choose the main business goal. This prevents the project from becoming too wide or too expensive.",
+        purposeLegend: "Website purpose",
+        kicker02: "02 / Business information",
+        businessTitle: "Business type and contact details.",
+        businessDesc: "Fill only what is ready. Missing details can be confirmed later.",
+        clientName: "Your name",
+        businessName: "Business name",
+        phone: "Phone / WhatsApp",
+        email: "Email",
+        businessType: "Business type",
+        targetCustomer: "Target customer",
+        businessSummary: "Short business introduction",
+        businessSummaryHint: "Example: what you sell, where you operate, and what customers should know first.",
+        kicker03: "03 / Version choice",
+        versionTitle: "Choose the project version.",
+        versionDesc: "Pick the closest version. Final price still depends on scope and content readiness.",
+        versionLegend: "Project version",
+        kicker04: "04 / Feature checklist",
+        featuresTitle: "Which functions are required?",
+        featuresDesc: "Select only what you actually need. Extra features increase cost and delivery time.",
+        featuresLegend: "Required features",
+        kicker05: "05 / Content and copywriting",
+        contentTitle: "Write the content you already have.",
+        contentDesc: "Short notes are enough. Do not paste very long documents here.",
+        servicesText: "Services / products to show",
+        pricingText: "Prices / packages / menu information",
+        brandStyle: "Preferred style, colors, or reference websites",
+        specialNotes: "Special notes",
+        kicker06: "06 / Photo material check",
+        mediaTitle: "What photos and brand assets are ready?",
+        mediaDesc: "Good real photos make the website look more trustworthy than generated filler.",
+        mediaLegend: "Available materials",
+        mediaNotes: "Photo / logo notes",
+        kicker07: "07 / Payment, delivery and order rules",
+        rulesTitle: "Business rules that cannot be guessed.",
+        rulesDesc: "If your site involves payment, delivery, booking or orders, these rules must be clear before development.",
+        paymentMethod: "Payment method",
+        deliveryType: "Delivery / pickup type",
+        ruleDetails: "Order, payment, refund, delivery or booking rules",
+        kicker08: "08 / AI customer service and app needs",
+        aiAppTitle: "Do you need AI support or a mobile app?",
+        aiAppDesc: "This does not force an app build. It only records whether APK or Apple app planning is needed.",
+        aiLegend: "AI customer service requirement",
+        appLegend: "Mobile app requirement",
+        aiAppNotes: "AI / app notes",
+        kicker09: "09 / Final confirmation",
+        confirmTitle: "Confirm before sending to WhatsApp.",
+        confirmDesc: "The form will create a structured project brief and open WhatsApp in the same window.",
+        confirmLegend: "Final confirmation",
+        submitTitle: "Send project brief to Lyxcode Studios",
+        submitHelp: `This will open WhatsApp to ${WHATSAPP_DISPLAY}. Please review the message before sending.`,
+        submitBtn: `Open WhatsApp → ${WHATSAPP_DISPLAY}`,
+        choosePlaceholder: "Select one",
+        validationRequired: "Please complete the required fields.",
+        validationPurpose: "Please choose a website purpose.",
+        validationVersion: "Please choose a project version.",
+        validationFeature: "Please select at least one required feature.",
+        validationConfirm: "Please tick all final confirmations before submitting.",
+        validationLong: "The WhatsApp brief is too long. Please shorten some text fields.",
+        saved: "Draft saved on this device session.",
+        restored: "Draft restored.",
+        sent: "WhatsApp is opening. Review the message before sending.",
+        sending: "Opening WhatsApp...",
+        notSelected: "Not selected",
+        briefTitle: "LYXCODE STUDIOS WEBSITE ORDER BRIEF",
+        notFilled: "Not filled"
+      },
+      zh: {
+        navPurpose: "网站目的",
+        navFeatures: "功能",
+        navContent: "资料文案",
+        navRules: "规则",
+        navConfirm: "确认",
+        headerCta: "开始下单",
+        heroLabel: "通用网站订单表格",
+        heroTitle: "一次填清楚，减少来回沟通。",
+        heroCopy: "客户填写业务资料后，系统会整理成清晰的 WhatsApp 项目 brief，直接发送给 Lyxcode Studios。",
+        heroPrimary: "开始填写",
+        heroSecondary: "最终确认",
+        termPurpose: "官网 / 落地页 / demo / 系统",
+        termFeatures: "WhatsApp、资料、图片、付款规则",
+        termApps: "APK / Apple App 需求检查",
+        progressLabel: "进度",
+        stepsTitle: "步骤",
+        stepPurpose: "网站目的",
+        stepBusiness: "生意资料",
+        stepVersion: "版本选择",
+        stepFeatures: "功能",
+        stepContent: "资料文案",
+        stepMedia: "照片素材",
+        stepRules: "业务规则",
+        stepAiApp: "AI / App",
+        stepConfirm: "确认",
+        kicker01: "01 / 网站目的",
+        purposeTitle: "这个网站主要要做到什么？",
+        purposeDesc: "先确认主要目标，避免项目范围过大、报价失控或交付不清楚。",
+        purposeLegend: "网站目的",
+        kicker02: "02 / 生意资料",
+        businessTitle: "生意类型与联系方式。",
+        businessDesc: "有资料就填写，暂时没有的部分之后再确认。",
+        clientName: "您的名字",
+        businessName: "生意名称",
+        phone: "电话 / WhatsApp",
+        email: "Email",
+        businessType: "生意类型",
+        targetCustomer: "目标顾客",
+        businessSummary: "生意简单介绍",
+        businessSummaryHint: "例如：卖什么、服务哪里、顾客第一眼需要知道什么。",
+        kicker03: "03 / 版本选择",
+        versionTitle: "选择项目版本。",
+        versionDesc: "先选最接近的版本。最终报价仍以功能范围和资料完整度为准。",
+        versionLegend: "项目版本",
+        kicker04: "04 / 功能打勾",
+        featuresTitle: "需要哪些功能？",
+        featuresDesc: "只选择真正需要的功能。功能越多，成本和交付时间越高。",
+        featuresLegend: "需要的功能",
+        kicker05: "05 / 资料文案填写",
+        contentTitle: "填写已有的内容资料。",
+        contentDesc: "简单说明即可，不建议粘贴太长的文件内容。",
+        servicesText: "要展示的服务 / 产品",
+        pricingText: "价格 / 套餐 / 菜单资料",
+        brandStyle: "喜欢的风格、颜色或参考网站",
+        specialNotes: "特别备注",
+        kicker06: "06 / 照片素材检查",
+        mediaTitle: "目前有哪些照片和品牌素材？",
+        mediaDesc: "真实照片通常比生成图更可信，更适合正式商业网站。",
+        mediaLegend: "已有素材",
+        mediaNotes: "照片 / Logo 备注",
+        kicker07: "07 / 付款、配送、订单规则",
+        rulesTitle: "不能靠猜的生意规则。",
+        rulesDesc: "只要涉及付款、配送、预约或下单，规则必须开发前确认。",
+        paymentMethod: "付款方式",
+        deliveryType: "配送 / 自取方式",
+        ruleDetails: "订单、付款、退款、配送或预约规则",
+        kicker08: "08 / AI 客服与手机 App 需求",
+        aiAppTitle: "是否需要 AI 客服或手机应用？",
+        aiAppDesc: "这里只是记录是否需要规划 APK / Apple App，不代表一定要做 App。",
+        aiLegend: "AI 客服需求",
+        appLegend: "手机应用需求",
+        aiAppNotes: "AI / App 备注",
+        kicker09: "09 / 最终确认",
+        confirmTitle: "发送 WhatsApp 前确认。",
+        confirmDesc: "系统会整理成项目 brief，并在同一个窗口打开 WhatsApp。",
+        confirmLegend: "最终确认",
+        submitTitle: "发送项目 brief 给 Lyxcode Studios",
+        submitHelp: `将会打开 WhatsApp：${WHATSAPP_DISPLAY}。发送前请检查内容。`,
+        submitBtn: `打开 WhatsApp → ${WHATSAPP_DISPLAY}`,
+        choosePlaceholder: "请选择",
+        validationRequired: "请先完成必填资料。",
+        validationPurpose: "请选择网站目的。",
+        validationVersion: "请选择项目版本。",
+        validationFeature: "请至少选择一个需要的功能。",
+        validationConfirm: "请勾选所有最终确认项目。",
+        validationLong: "WhatsApp 内容太长，请缩短部分文字。",
+        saved: "草稿已暂存在本次浏览器会话。",
+        restored: "已恢复草稿。",
+        sent: "正在打开 WhatsApp，请检查内容后发送。",
+        sending: "正在打开 WhatsApp...",
+        notSelected: "未选择",
+        briefTitle: "LYXCODE STUDIOS 网站订单 BRIEF",
+        notFilled: "未填写"
+      }
+    };
+
+    const choices = {
+      purpose: [
+        ["business_website", "Business website", "企业官网", "Show brand, services, trust and contact path.", "展示品牌、服务、信任感和联系入口。"],
+        ["landing_page", "Landing page", "落地页", "One focused page for one offer or campaign.", "一个页面集中介绍一个服务或活动。"],
+        ["demo_website", "Demo website", "Demo 网站", "A visual sample to show customers before full build.", "先做给客户看的可视化 demo。"],
+        ["ordering_site", "Order / booking site", "下单 / 预约网站", "Customer can submit order, booking or enquiry details.", "顾客可以提交订单、预约或咨询资料。"],
+        ["payment_site", "Payment website", "付款网站", "Need Stripe, FPX or payment flow planning.", "需要 Stripe、FPX 或付款流程规划。"],
+        ["admin_system", "Website with admin system", "带后台系统的网站", "Requires dashboard, records, login or management tools.", "需要后台、记录、登录或管理工具。"]
+      ],
+      version: [
+        ["starter", "Starter — simple page", "Starter — 简单页面", "Basic online presence. No backend, no payment.", "基础线上展示，不含后台和付款。"],
+        ["business", "Business — full website", "Business — 完整官网", "More sections, stronger content structure and brand polish.", "更多区块、更完整文案结构和品牌视觉。"],
+        ["custom", "Custom — system scope", "Custom — 系统范围", "For booking, payment, dashboard, database or automation.", "适合预约、付款、后台、数据库或自动化。"]
+      ],
+      features: [
+        ["responsive", "Responsive mobile + desktop design", "手机和电脑响应式设计", "Required for every modern business site.", "现代商业网站基础要求。"],
+        ["whatsapp", "WhatsApp button / enquiry flow", "WhatsApp 按钮 / 咨询流程", "Direct customer contact path.", "顾客可直接联系。"],
+        ["social_links", "Facebook / Instagram links", "Facebook / Instagram 链接", "Useful for local business trust.", "适合本地生意建立信任。"],
+        ["gallery", "Photo gallery / portfolio", "照片展示 / 作品集", "For service, food, beauty, property or portfolio business.", "适合服务、美食、美容、地产或作品展示。"],
+        ["form", "Contact form", "联系表格", "Static form or WhatsApp-based form depending on scope.", "可做静态表格或 WhatsApp 表格。"],
+        ["booking", "Booking / appointment", "预约功能", "Needs date, time and rule confirmation.", "需要确认日期、时间和规则。"],
+        ["ordering", "Order form / menu", "下单表格 / 菜单", "Needs products, prices and order rules.", "需要产品、价格和订单规则。"],
+        ["payment", "Online payment", "在线付款", "Requires payment provider and business rules.", "需要付款平台和业务规则。"],
+        ["admin", "Admin dashboard", "后台管理", "Requires login, records and database planning.", "需要登录、记录和数据库规划。"],
+        ["seo", "Basic SEO setup", "基础 SEO", "Title, description and page structure.", "标题、描述和页面结构。"]
+      ],
+      media: [
+        ["logo_ready", "Logo ready", "已有 Logo", "PNG or SVG preferred.", "建议 PNG 或 SVG。"],
+        ["photos_ready", "Business photos ready", "已有生意照片", "Real photos are best.", "真实照片最好。"],
+        ["need_photo_help", "Need help selecting photos", "需要协助挑选照片", "We can advise what is usable.", "可以协助判断哪些能用。"],
+        ["need_generated", "Need generated visual placeholders", "需要生成视觉占位图", "Only if real photos are not available.", "只在没有真实照片时使用。"],
+        ["no_assets", "No assets yet", "暂时没有素材", "Website can still start with placeholders.", "可先用占位素材开始。"]
+      ],
+      ai: [
+        ["none", "No AI customer service needed", "不需要 AI 客服", "Normal contact form or WhatsApp is enough.", "普通联系表格或 WhatsApp 已足够。"],
+        ["faq_ai", "AI FAQ helper", "AI 常见问题助手", "For answering fixed business questions.", "用于回答固定业务问题。"],
+        ["whatsapp_ai", "WhatsApp AI support planning", "WhatsApp AI 客服规划", "Requires deeper workflow planning.", "需要更深入的流程规划。"],
+        ["not_sure", "Not sure yet", "还不确定", "We can decide after reviewing the business process.", "看完业务流程后再决定。"]
+      ],
+      app: [
+        ["no_app", "No mobile app needed", "不需要手机 App", "Website is enough for now.", "目前网站已经足够。"],
+        ["apk_later", "May need Android APK later", "以后可能需要 Android APK", "Plan structure so future APK is easier.", "先规划结构，未来较容易扩展 APK。"],
+        ["apple_later", "May need Apple app later", "以后可能需要 Apple App", "Apple app requires stricter planning and approval.", "Apple App 需要更严格规划和审核。"],
+        ["both_later", "May need both APK and Apple app", "以后可能两个都需要", "Best handled as a later system phase.", "建议作为后续系统阶段处理。"],
+        ["need_now", "Need app quotation now", "现在就需要 App 报价", "Requires separate scope, budget and timeline.", "需要单独确认范围、预算和时间。"]
+      ],
+      confirm: [
+        ["content_true", "I confirm the information is correct.", "我确认资料是真实正确的。", "This avoids wrong contact or business details.", "避免联系方式或业务资料错误。"],
+        ["scope_understood", "I understand final price depends on confirmed scope.", "我明白最终价格以确认范围为准。", "Extra functions may require extra cost.", "额外功能可能需要额外费用。"],
+        ["whatsapp_ok", `I agree to send this brief via WhatsApp to ${WHATSAPP_DISPLAY}.`, `我同意通过 WhatsApp 发送给 ${WHATSAPP_DISPLAY}。`, "Review before sending.", "发送前请自行检查。"]
+      ],
+      businessTypes: [
+        ["", "Select one", "请选择"],
+        ["restaurant", "Restaurant / cafe / food", "餐饮 / 咖啡店 / 食物"],
+        ["beauty", "Beauty / saloon / spa", "美容 / 美发 / SPA"],
+        ["retail", "Retail / shop / product", "零售 / 店铺 / 产品"],
+        ["service", "Professional service", "专业服务"],
+        ["education", "Kindergarten / education / course", "幼儿园 / 教育 / 课程"],
+        ["property", "Property / homestay / rental", "地产 / 民宿 / 租借"],
+        ["automotive", "Car / automotive", "汽车行业"],
+        ["personal", "Personal brand / portfolio", "个人品牌 / 作品集"],
+        ["other", "Other", "其他"]
+      ],
+      paymentMethods: [
+        ["", "Select one", "请选择"],
+        ["none", "No online payment", "不需要在线付款"],
+        ["manual", "Manual bank transfer / DuitNow", "手动转账 / DuitNow"],
+        ["stripe", "Stripe / card payment", "Stripe / 信用卡付款"],
+        ["fpx", "FPX / local payment", "FPX / 本地付款"],
+        ["cod", "Cash on delivery / pay at shop", "货到付款 / 到店付款"],
+        ["not_sure", "Not sure yet", "还不确定"]
+      ],
+      deliveryTypes: [
+        ["", "Select one", "请选择"],
+        ["none", "No delivery / no order flow", "没有配送 / 没有下单流程"],
+        ["pickup", "Self pickup", "自取"],
+        ["delivery", "Delivery", "配送"],
+        ["dinein", "Dine-in / table order", "堂食 / 桌边下单"],
+        ["booking", "Appointment / booking only", "只做预约"],
+        ["mixed", "Mixed rules", "混合规则"]
+      ]
+    };
+
+    function t(key) {
+      return i18n[lang][key] || key;
+    }
+
+    function esc(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function label(row) {
+      return lang === "en" ? row[1] : row[2];
+    }
+
+    function small(row) {
+      return lang === "en" ? row[3] : row[4];
+    }
+
+    function toast(message) {
+      const box = $("#toast");
+      box.textContent = message;
+      box.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => box.classList.remove("show"), 3200);
+    }
+
+    function renderChoices(targetId, name, rows, type) {
+      const target = $(targetId);
+      target.innerHTML = rows.map(row => `
+        <label class="choice">
+          <input type="${esc(type)}" name="${esc(name)}" value="${esc(row[0])}" />
+          <span>
+            <strong>${esc(label(row))}</strong>
+            <small>${esc(small(row))}</small>
+          </span>
+        </label>
+      `).join("");
+    }
+
+    function renderSelect(id, rows) {
+      const select = $(id);
+      select.innerHTML = rows.map(row => `
+        <option value="${esc(row[0])}">${esc(lang === "en" ? row[1] : row[2])}</option>
+      `).join("");
+    }
+
+    function getFormState() {
+      const form = $("#projectForm");
+      const fields = {};
+      $$("input, textarea, select", form).forEach(input => {
+        if (input.type === "radio") {
+          if (input.checked) fields[input.name] = input.value;
+          return;
+        }
+
+        if (input.type === "checkbox") {
+          if (!fields[input.name]) fields[input.name] = [];
+          if (input.checked) fields[input.name].push(input.value);
+          return;
+        }
+
+        fields[input.name || input.id] = input.value;
+      });
+
+      return { lang, fields };
+    }
+
+    function applyFormState(state) {
+      if (!state || !state.fields) return;
+
+      Object.entries(state.fields).forEach(([name, value]) => {
+        if (Array.isArray(value)) {
+          value.forEach(item => {
+            const input = document.querySelector(`input[name="${CSS.escape(name)}"][value="${CSS.escape(item)}"]`);
+            if (input) input.checked = true;
+          });
+          return;
+        }
+
+        const radio = document.querySelector(`input[type="radio"][name="${CSS.escape(name)}"][value="${CSS.escape(value)}"]`);
+        if (radio) {
+          radio.checked = true;
+          return;
+        }
+
+        const input = document.querySelector(`[name="${CSS.escape(name)}"], #${CSS.escape(name)}`);
+        if (input) input.value = value;
+      });
+    }
+
+    function saveDraft() {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(getFormState()));
+      updateProgress();
+    }
+
+    function loadDraft() {
+      try {
+        const raw = sessionStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch {
+        return null;
+      }
+    }
+
+    function applyLang(nextLang, shouldSave = true) {
+      const previousState = getFormState();
+      lang = nextLang;
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      const metaLang = document.querySelector('meta[http-equiv="Content-Language"]');
+      if (metaLang) metaLang.setAttribute("content", document.documentElement.lang);
+
+      $("[data-lang='en']").classList.toggle("active", lang === "en");
+      $("[data-lang='zh']").classList.toggle("active", lang === "zh");
+
+      $$("[data-i18n]").forEach(node => {
+        node.textContent = t(node.dataset.i18n);
+      });
+
+      $("#submitHelp").textContent = t("submitHelp");
+      $("#submitBtn").textContent = t("submitBtn");
+      $("#contactLine").textContent = `WhatsApp: ${WHATSAPP_DISPLAY} · Email: ${CONTACT_EMAIL}`;
+      $("#footerContact").textContent = `WhatsApp: ${WHATSAPP_DISPLAY} · ${CONTACT_EMAIL}`;
+      $("#headerWhatsapp").href = `https://wa.me/${WHATSAPP_NUMBER}`;
+
+      renderChoices("#purposeChoices", "purpose", choices.purpose, "radio");
+      renderChoices("#versionChoices", "version", choices.version, "radio");
+      renderChoices("#featureChoices", "features", choices.features, "checkbox");
+      renderChoices("#mediaChoices", "media", choices.media, "checkbox");
+      renderChoices("#aiChoices", "ai", choices.ai, "radio");
+      renderChoices("#appChoices", "app", choices.app, "radio");
+      renderChoices("#confirmChoices", "confirm", choices.confirm, "checkbox");
+      renderSelect("#businessType", choices.businessTypes);
+      renderSelect("#paymentMethod", choices.paymentMethods);
+      renderSelect("#deliveryType", choices.deliveryTypes);
+
+      applyFormState(previousState);
+      updateProgress();
+      if (shouldSave) saveDraft();
+    }
+
+    function checkedValues(name) {
+      return $$(`input[name="${CSS.escape(name)}"]:checked`).map(input => input.value);
+    }
+
+    function radioValue(name) {
+      const input = $(`input[name="${CSS.escape(name)}"]:checked`);
+      return input ? input.value : "";
+    }
+
+    function labelFrom(rows, value) {
+      const row = rows.find(item => item[0] === value);
+      return row ? label(row) : value;
+    }
+
+    function labelsFrom(rows, values) {
+      return values.map(value => labelFrom(rows, value));
+    }
+
+    function fieldValue(id) {
+      const input = $("#" + id);
+      return input ? String(input.value || "").trim() : "";
+    }
+
+    function selectLabel(id, rows, emptyMode = "skip") {
+      const value = fieldValue(id);
+      if (!value) return emptyMode === "explicit" ? t("notSelected") : "";
+      return labelFrom(rows, value);
+    }
+
+    function addLine(lines, key, value) {
+      const clean = Array.isArray(value)
+        ? value.filter(Boolean).join(", ")
+        : String(value || "").trim();
+
+      if (clean) lines.push(`${key}: ${clean}`);
+    }
+
+    function buildBrief() {
+      const L = lang === "en";
+      const lines = [];
+
+      lines.push(t("briefTitle"));
+      lines.push("=".repeat(34));
+      lines.push("");
+
+      addLine(lines, L ? "Language" : "语言", L ? "English" : "中文");
+      addLine(lines, L ? "Submitted to" : "发送给", WHATSAPP_DISPLAY);
+      lines.push("");
+
+      lines.push(L ? "[01] Website Purpose" : "[01] 网站目的");
+      addLine(lines, L ? "Purpose" : "网站目的", labelFrom(choices.purpose, radioValue("purpose")));
+      lines.push("");
+
+      lines.push(L ? "[02] Business Information" : "[02] 生意资料");
+      addLine(lines, L ? "Client name" : "客户名字", fieldValue("clientName"));
+      addLine(lines, L ? "Business name" : "生意名称", fieldValue("businessName"));
+      addLine(lines, L ? "Phone / WhatsApp" : "电话 / WhatsApp", fieldValue("phone"));
+      addLine(lines, "Email", fieldValue("email"));
+      addLine(lines, L ? "Business type" : "生意类型", selectLabel("businessType", choices.businessTypes));
+      addLine(lines, L ? "Target customer" : "目标顾客", fieldValue("targetCustomer"));
+      addLine(lines, L ? "Business summary" : "生意介绍", fieldValue("businessSummary"));
+      lines.push("");
+
+      lines.push(L ? "[03] Version Choice" : "[03] 版本选择");
+      addLine(lines, L ? "Version" : "版本", labelFrom(choices.version, radioValue("version")));
+      lines.push("");
+
+      lines.push(L ? "[04] Feature Checklist" : "[04] 功能打勾");
+      addLine(lines, L ? "Required features" : "需要功能", labelsFrom(choices.features, checkedValues("features")));
+      lines.push("");
+
+      lines.push(L ? "[05] Content / Copywriting" : "[05] 资料文案");
+      addLine(lines, L ? "Services / products" : "服务 / 产品", fieldValue("servicesText"));
+      addLine(lines, L ? "Prices / packages" : "价格 / 套餐", fieldValue("pricingText"));
+      addLine(lines, L ? "Style / reference" : "风格 / 参考", fieldValue("brandStyle"));
+      addLine(lines, L ? "Special notes" : "特别备注", fieldValue("specialNotes"));
+      lines.push("");
+
+      lines.push(L ? "[06] Photo Material Check" : "[06] 照片素材检查");
+      addLine(lines, L ? "Available materials" : "已有素材", labelsFrom(choices.media, checkedValues("media")));
+      addLine(lines, L ? "Photo / logo notes" : "照片 / Logo 备注", fieldValue("mediaNotes"));
+      lines.push("");
+
+      lines.push(L ? "[07] Payment / Delivery / Order Rules" : "[07] 付款 / 配送 / 订单规则");
+      addLine(lines, L ? "Payment method" : "付款方式", selectLabel("paymentMethod", choices.paymentMethods, "explicit"));
+      addLine(lines, L ? "Delivery / pickup type" : "配送 / 自取方式", selectLabel("deliveryType", choices.deliveryTypes, "explicit"));
+      addLine(lines, L ? "Rules" : "规则", fieldValue("ruleDetails"));
+      lines.push("");
+
+      lines.push(L ? "[08] AI Customer Service / Mobile App" : "[08] AI 客服 / 手机 App");
+      addLine(lines, L ? "AI requirement" : "AI 客服需求", labelFrom(choices.ai, radioValue("ai")));
+      addLine(lines, L ? "Mobile app requirement" : "手机 App 需求", labelFrom(choices.app, radioValue("app")));
+      addLine(lines, L ? "AI / app notes" : "AI / App 备注", fieldValue("aiAppNotes"));
+      lines.push("");
+
+      lines.push(L ? "[09] Final Confirmation" : "[09] 最终确认");
+      const confirmedIds = checkedValues("confirm");
+      addLine(lines, L ? "Confirmed items" : "确认事项", labelsFrom(choices.confirm, confirmedIds));
+      addLine(lines, L ? "Confirmation IDs" : "确认编号", confirmedIds);
+      lines.push("");
+      lines.push(L ? "Please review and reply with the recommended package, estimated price and next step." : "请帮我检查，并回复推荐套餐、预计价格和下一步。");
+
+      return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+    }
+
+    function validateCustomGroups() {
+      if (!radioValue("purpose")) {
+        toast(t("validationPurpose"));
+        $("#purpose").scrollIntoView({ behavior: "smooth", block: "start" });
+        return false;
+      }
+
+      if (!radioValue("version")) {
+        toast(t("validationVersion"));
+        $("#version").scrollIntoView({ behavior: "smooth", block: "start" });
+        return false;
+      }
+
+      if (checkedValues("features").length < 1) {
+        toast(t("validationFeature"));
+        $("#features").scrollIntoView({ behavior: "smooth", block: "start" });
+        return false;
+      }
+
+      const confirmCount = choices.confirm.length;
+      if (checkedValues("confirm").length < confirmCount) {
+        toast(t("validationConfirm"));
+        $("#confirm").scrollIntoView({ behavior: "smooth", block: "start" });
+        return false;
+      }
+
+      return true;
+    }
+
+    function isStepComplete(id) {
+      if (id === "purpose") return Boolean(radioValue("purpose"));
+      if (id === "business") return Boolean(fieldValue("clientName") && fieldValue("businessName") && fieldValue("phone") && fieldValue("businessType"));
+      if (id === "version") return Boolean(radioValue("version"));
+      if (id === "features") return checkedValues("features").length > 0;
+      if (id === "content") return Boolean(fieldValue("servicesText") || fieldValue("pricingText") || fieldValue("brandStyle") || fieldValue("specialNotes"));
+      if (id === "media") return checkedValues("media").length > 0 || Boolean(fieldValue("mediaNotes"));
+      if (id === "rules") return Boolean(fieldValue("paymentMethod") || fieldValue("deliveryType") || fieldValue("ruleDetails"));
+      if (id === "aiapp") return Boolean(radioValue("ai") || radioValue("app") || fieldValue("aiAppNotes"));
+      if (id === "confirm") return checkedValues("confirm").length === choices.confirm.length;
+      return false;
+    }
+
+    function updateProgress() {
+      const ids = ["purpose", "business", "version", "features", "content", "media", "rules", "aiapp", "confirm"];
+      const completed = ids.filter(isStepComplete).length;
+      const total = ids.length;
+      const percent = Math.round((completed / total) * 100);
+      const progressText = $("#progressText");
+      const progressBar = $("#progressBar");
+
+      if (progressText) progressText.textContent = `${completed} / ${total}`;
+      if (progressBar) progressBar.style.width = `${percent}%`;
+    }
+
+    function setupScrollSpy() {
+      const links = $$("#stepsNav a");
+      const sections = links
+        .map(link => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
+
+      const observer = new IntersectionObserver(entries => {
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (!visible) return;
+
+        links.forEach(link => {
+          link.classList.toggle("active", link.getAttribute("href") === "#" + visible.target.id);
+        });
+      }, {
+        root: null,
+        rootMargin: "-30% 0px -55% 0px",
+        threshold: [0.05, 0.2, 0.45, 0.7]
+      });
+
+      sections.forEach(section => observer.observe(section));
+      if (links[0]) links[0].classList.add("active");
+    }
+
+    function setupMobileMenu() {
+      const btn = $("#mobileMenuBtn");
+      const panel = $("#mobilePanel");
+
+      btn.addEventListener("click", () => {
+        const open = !panel.classList.contains("open");
+        panel.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", String(open));
+      });
+
+      $$("#mobilePanel a").forEach(link => {
+        link.addEventListener("click", () => {
+          panel.classList.remove("open");
+          btn.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+
+    function setupForm() {
+      const form = $("#projectForm");
+
+      form.addEventListener("input", saveDraft);
+      form.addEventListener("change", saveDraft);
+
+      form.addEventListener("submit", event => {
+        event.preventDefault();
+
+        if (isSubmitting) return;
+
+        if (!form.checkValidity()) {
+          toast(t("validationRequired"));
+          form.reportValidity();
+          return;
+        }
+
+        if (!validateCustomGroups()) return;
+
+        const brief = buildBrief();
+        const encoded = encodeURIComponent(brief);
+
+        if (encoded.length > 3500) {
+          toast(t("validationLong"));
+          return;
+        }
+
+        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
+        const submitButton = event.submitter || $("#submitBtn");
+        const originalText = submitButton ? submitButton.textContent : "";
+
+        isSubmitting = true;
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = t("sending");
+        }
+
+        toast(t("sent"));
+        sessionStorage.removeItem(STORAGE_KEY);
+
+        setTimeout(() => {
+          location.href = url;
+        }, 120);
+
+        setTimeout(() => {
+          form.reset();
+          applyLang(lang, false);
+          updateProgress();
+          isSubmitting = false;
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = originalText || t("submitBtn");
+          }
+        }, 2000);
+      });
+    }
+
+    function setupLanguage() {
+      $$("#btnEn, #btnZh").forEach(button => {
+        button.addEventListener("click", () => {
+          applyLang(button.dataset.lang);
+        });
+      });
+    }
+
+    function init() {
+      applyLang("en", false);
+
+      const draft = loadDraft();
+      if (draft && draft.lang && (draft.lang === "en" || draft.lang === "zh")) {
+        applyLang(draft.lang, false);
+        applyFormState(draft);
+        toast(t("restored"));
+      }
+
+      setupLanguage();
+      setupMobileMenu();
+      setupScrollSpy();
+      setupForm();
+      updateProgress();
+    }
+
+    init();
+  </script>
+</body>
+</html>
